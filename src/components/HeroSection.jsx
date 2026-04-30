@@ -197,15 +197,15 @@ const HeroSection = ({ isLoaded }) => {
   return (
     <div
       ref={containerRef}
-      className={`w-full h-screen rounded-b-4xl bg-gradient-to-br ${shoes[currentIndex].bg} ${
+      className={`w-full min-h-screen lg:h-screen rounded-b-4xl bg-gradient-to-br ${shoes[currentIndex].bg} ${
         isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      } transition-colors duration-700 relative flex items-center justify-between px-10 overflow-hidden`}
+      } transition-colors duration-700 relative flex flex-col lg:flex-row items-center lg:items-stretch lg:justify-between px-4 sm:px-6 lg:px-10 pt-24 pb-10 lg:pt-0 lg:pb-0 overflow-hidden`}
     >
 
       {/* ================= LEFT CONTENT ================= */}
-      <div ref={leftRef} className="max-w-[480px] z-10 mt-20">
+      <div ref={leftRef} className="w-full lg:max-w-[480px] z-10 lg:mt-20 flex flex-col items-center lg:items-start text-center lg:text-left">
 
-        <h1 ref={titleRef} className="text-[64px] font-extrabold text-white leading-[1.1] tracking-[-1.5px]">
+        <h1 ref={titleRef} className="text-4xl sm:text-5xl lg:text-[64px] font-extrabold text-white leading-[1.1] tracking-[-1px] lg:tracking-[-1.5px]">
           <span>Rendi speciale</span><br />
           <span>ogni tuo </span> 
           <span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.5)" }}>
@@ -213,25 +213,25 @@ const HeroSection = ({ isLoaded }) => {
           </span>.
         </h1>
 
-        <h2 ref={subtitleRef} className="text-3xl font-bold tracking-[8px] uppercase text-white mt-12">
+        <h2 ref={subtitleRef} className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-[4px] sm:tracking-[6px] lg:tracking-[8px] uppercase text-white mt-6 lg:mt-12">
           {shoes[currentIndex].name}
         </h2>
 
         {/* Divider — now has its own ref for animation */}
         <div
           ref={dividerRef}
-          className="h-[2px] w-82 mt-3"
+          className="h-[2px] w-64 sm:w-72 lg:w-82 mt-3"
           style={{ background: "linear-gradient(to right, #fff, transparent)" }}
         />
 
-        <div className="h-full w-full pt-45">
-          <p ref={descRef} className="w-[420px] text-white/85 text-[14px] leading-[1.8] mt-7">
+        <div className="w-full pt-4 lg:pt-45 lg:h-full">
+          <p ref={descRef} className="w-full max-w-[420px] mx-auto lg:mx-0 text-white/85 text-[13px] lg:text-[14px] leading-[1.7] lg:leading-[1.8] mt-4 lg:mt-7">
             La Air Jordan 18 è una delle sneaker più raffinate e lussuose della linea Jordan, 
             progettata per rappresentare il capitolo finale 
             della leggendaria carriera NBA di Michael Jordan.
           </p>
 
-          <div ref={badgesRef} className="flex gap-3 mt-8">
+          <div ref={badgesRef} className="flex gap-3 mt-5 lg:mt-8 justify-center lg:justify-start">
             <span className="py-2 px-4 border border-white/60 rounded-full text-white/80 text-[11px] tracking-[1.5px] uppercase font-semibold">
               Premium
             </span>
@@ -246,13 +246,13 @@ const HeroSection = ({ isLoaded }) => {
       {/* ================= SHOES SLIDER ================= */}
       <div
         ref={shoeRef}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] flex items-center justify-center"
+        className="relative lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 w-full lg:w-[600px] h-[260px] sm:h-[340px] lg:h-[600px] flex items-center justify-center my-4 lg:my-0"
       >
         {/* Only render the active shoe — GSAP handles all transitions */}
         <img
           src={shoes[currentIndex].image}
           alt={shoes[currentIndex].color}
-          className="absolute w-[clamp(300px,35vw,650px)]"
+          className="absolute w-[clamp(220px,65vw,360px)] lg:w-[clamp(300px,35vw,650px)]"
           style={{
             transform: `rotate(${shoes[currentIndex].rotate}) translateY(${shoes[currentIndex].translateY || "0px"}) scale(${shoes[currentIndex].scale})`,
             filter: "drop-shadow(0 30px 80px rgba(0,0,0,0.6))",
@@ -262,10 +262,9 @@ const HeroSection = ({ isLoaded }) => {
         {/* Platform ellipses — now has ref for animation */}
         <svg
           ref={platformRef}
-          className="absolute top-full -translate-y-12"
-          width="500"
-          height="80"
+          className="absolute top-full -translate-y-12 w-[280px] sm:w-[360px] lg:w-[500px] h-20"
           viewBox="0 0 500 80"
+          preserveAspectRatio="xMidYMid meet"
         >
           <ellipse cx="250" cy="40" rx="200" ry="35"
             fill="none" stroke="rgba(255,255,255,0.3)"
@@ -276,26 +275,43 @@ const HeroSection = ({ isLoaded }) => {
             strokeWidth="1"
           />
         </svg>
+
+        {/* ============ MOBILE ARROWS (inside shoe wrapper) ============ */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous shoe"
+          className="lg:hidden absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-50 text-white text-2xl sm:text-3xl cursor-pointer bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded-full transition-all duration-300"
+        >
+          <i className="ri-arrow-left-s-line" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          aria-label="Next shoe"
+          className="lg:hidden absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-50 text-white text-2xl sm:text-3xl cursor-pointer bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded-full transition-all duration-300"
+        >
+          <i className="ri-arrow-right-s-line" />
+        </button>
       </div>
 
 
       {/* ================= RIGHT CONTENT ================= */}
-      <div ref={rightRef} className="flex flex-col gap-8 items-end z-10">
+      <div ref={rightRef} className="flex flex-col gap-4 lg:gap-8 items-center lg:items-end z-10 w-full lg:w-auto">
 
-        <div className="backdrop-blur-md border mt-10 border-white/20 rounded-2xl p-6">
-          <p className="flex items-center gap-2 text-[12px] font-bold tracking-[3px] uppercase text-white/80 mb-4">
+        <div className="backdrop-blur-md border mt-4 lg:mt-10 border-white/20 rounded-2xl p-4 lg:p-6 w-full max-w-[340px] lg:w-auto lg:max-w-none">
+          <p className="flex items-center gap-2 text-[12px] font-bold tracking-[3px] uppercase text-white/80 mb-3 lg:mb-4">
             <span className="w-2 h-2 rounded-full bg-white block" />
             Colore : {shoes[currentIndex].color}
           </p>
-          <p className="flex items-center gap-2 text-[12px] font-bold tracking-[3px] uppercase text-white/80 mb-4">
+          <p className="flex items-center gap-2 text-[12px] font-bold tracking-[3px] uppercase text-white/80 mb-3 lg:mb-4">
             <span className="w-2 h-2 rounded-full bg-white block" />
             Seleziona taglia (EU)
           </p>
-          <div className="flex flex-wrap gap-2 max-w-[220px] justify-end">
-            {[36, 37, 38, 39, 40, 41, 42, 43].map((s) => (
+          <div className="flex flex-wrap gap-2 max-w-full lg:max-w-[220px] justify-start lg:justify-end">
+            {[36, 37, 38, 39, 40, 41, 42].map((s) => (
               <button
                 key={s}
-                className="w-10 h-10 flex items-center justify-center border border-white/30 rounded-full text-white/60 text-xs cursor-pointer transition-all hover:border-white hover:text-white hover:bg-white/20"
+                className="w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center border border-white/30 rounded-full text-white/60 text-xs cursor-pointer transition-all hover:border-white hover:text-white hover:bg-white/20"
                 style={s === 11 ? { background: "rgba(255,255,255,0.95)", color: "#000", borderColor: "#fff", fontWeight: 700 } : {}}
               >
                 {s}
@@ -304,44 +320,46 @@ const HeroSection = ({ isLoaded }) => {
           </div>
         </div>
 
-        <div className="flex gap-3 flex-col">
-          <i className="ri-instagram-line text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
-          <i className="ri-facebook-circle-line text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
-          <i className="ri-twitter-line text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
+        <div className="flex gap-3 flex-row lg:flex-col">
+          <i className="ri-instagram-line text-xl lg:text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
+          <i className="ri-facebook-circle-line text-xl lg:text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
+          <i className="ri-twitter-line text-xl lg:text-2xl text-white/70 hover:text-white cursor-pointer transition-all hover:scale-110 duration-300 bg-white/10 py-2 px-3 rounded-full" />
         </div>
 
-        <div className="flex items-center mt-10 gap-4 bg-white/15 border border-white/30 rounded-full p-2 px-6 cursor-pointer hover:bg-white/25 transition-all duration-300">
-          <button className="bg-white text-black text-[12px] font-extrabold tracking-[2px] uppercase py-3 px-6 rounded-full hover:shadow-lg duration-300">
+        <div className="flex items-center mt-2 lg:mt-10 gap-3 lg:gap-4 bg-white/15 border border-white/30 rounded-full p-2 px-4 lg:px-6 cursor-pointer hover:bg-white/25 transition-all duration-300">
+          <button className="bg-white text-black text-[11px] lg:text-[12px] font-extrabold tracking-[2px] uppercase py-2.5 lg:py-3 px-5 lg:px-6 rounded-full hover:shadow-lg duration-300">
             Buy Now
           </button>
-          <span className="text-white text-[24px] font-black tracking-[-0.5px]">
+          <span className="text-white text-[20px] lg:text-[24px] font-black tracking-[-0.5px]">
             {shoes[currentIndex].price}
           </span>
         </div>
       </div>
 
 
-      {/* ================= SCROLL INDICATOR ================= */}
+      {/* ================= SCROLL INDICATOR (desktop only) ================= */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-30"
+        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 animate-bounce z-30"
       >
         <span className="text-white/50 text-xs">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-white/50 to-transparent" />
       </div>
 
 
-      {/* ================= ARROWS ================= */}
+      {/* ================= DESKTOP ARROWS ================= */}
       <button
         onClick={prevSlide}
-        className="absolute left-50 top-120 z-50 -translate-y-1/2 text-white text-4xl cursor-pointer bg-white/10 hover:bg-white/20 px-3 py-2 rounded-full transition-all duration-300 hover:scale-110"
+        aria-label="Previous shoe"
+        className="hidden lg:block absolute left-50 top-120 z-50 -translate-y-1/2 text-white text-4xl cursor-pointer bg-white/10 hover:bg-white/20 px-3 py-2 rounded-full transition-all duration-300 hover:scale-110"
       >
         <i className="ri-arrow-left-s-line" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-50 top-120 z-50 -translate-y-1/2 text-white text-4xl cursor-pointer bg-white/10 hover:bg-white/20 px-3 py-2 rounded-full transition-all duration-300 hover:scale-110"
+        aria-label="Next shoe"
+        className="hidden lg:block absolute right-50 top-120 z-50 -translate-y-1/2 text-white text-4xl cursor-pointer bg-white/10 hover:bg-white/20 px-3 py-2 rounded-full transition-all duration-300 hover:scale-110"
       >
         <i className="ri-arrow-right-s-line" />
       </button>
@@ -351,6 +369,3 @@ const HeroSection = ({ isLoaded }) => {
 };
 
 export default HeroSection;
-
-
-

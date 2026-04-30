@@ -64,7 +64,7 @@ const Footer = () => {
     // ================================
     // COLONNE GRID — ognuna sale
     // con un ritardo sfalsato così entrano
-    // una dopo l’altra da sinistra a destra
+    // una dopo l'altra da sinistra a destra
     // ================================
     gsap.fromTo(
       [col1Ref.current, col2Ref.current, col3Ref.current, col4Ref.current, col5Ref.current],
@@ -108,14 +108,14 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="min-h-screen w-screen bg-gradient-to-b from-[#0a0a0a] to-black text-white px-10 py-20 flex flex-col justify-between"
+      className="min-h-screen w-screen bg-gradient-to-b from-[#0a0a0a] to-black text-white px-4 sm:px-6 lg:px-10 py-12 sm:py-16 lg:py-20 flex flex-col justify-between"
     >
 
       {/* CTA SUPERIORE GRANDE */}
       <div>
         <h1
           ref={headingRef}
-          className="text-5xl md:text-7xl font-black uppercase leading-tight max-w-4xl"
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-tight max-w-4xl"
         >
           Progettata per le performance.
           <br />
@@ -124,14 +124,14 @@ const Footer = () => {
 
         <button
           ref={buttonRef}
-          className="mt-10 px-8 py-3 bg-white text-black font-semibold text-sm tracking-wide hover:bg-neutral-200 transition"
+          className="mt-6 sm:mt-10 px-6 sm:px-8 py-3 bg-white text-black font-semibold text-sm tracking-wide hover:bg-neutral-200 transition"
         >
           Esplora la collezione
         </button>
       </div>
 
       {/* GRID CENTRALE */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mt-20">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10 mt-12 sm:mt-16 lg:mt-20">
 
         <div ref={col1Ref}>
           <h2 className="text-sm tracking-widest text-white/50 mb-4">PRODOTTI</h2>
@@ -174,18 +174,18 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div ref={col5Ref}>
+        <div ref={col5Ref} className="col-span-2 md:col-span-1">
           <h2 className="text-sm tracking-widest text-white/50 mb-4">RESTA AGGIORNATO</h2>
           <p className="text-sm text-white/60 mb-4">
             Ricevi aggiornamenti sulle nuove uscite e sulle offerte esclusive.
           </p>
-          <div className="flex">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
             <input
               type="email"
               placeholder="Indirizzo email"
               className="w-full px-3 py-2 bg-white/10 text-sm outline-none"
             />
-            <button className="px-4 bg-white text-black text-sm font-semibold">
+            <button className="px-4 py-2 sm:py-0 bg-white text-black text-sm font-semibold whitespace-nowrap">
               Iscriviti
             </button>
           </div>
@@ -196,10 +196,10 @@ const Footer = () => {
       {/* FONDO */}
       <div
         ref={bottomRef}
-        className="flex flex-col md:flex-row justify-between items-center text-xs text-white/50 mt-10 border-t border-white/10 pt-6"
+        className="flex flex-col md:flex-row justify-between items-center text-xs text-white/50 mt-10 border-t border-white/10 pt-6 gap-4 md:gap-0"
       >
-        <p>© 2026 Nike. Tutti i diritti riservati.</p>
-        <div className="flex gap-6 mt-4 md:mt-0">
+        <p className="text-center md:text-left">© 2026 Nike. Tutti i diritti riservati.</p>
+        <div className="flex gap-6 mt-2 md:mt-0">
           <span className="hover:text-white transition">Privacy</span>
           <span className="hover:text-white transition">Termini</span>
           <span className="hover:text-white transition">Cookies</span>

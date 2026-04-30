@@ -84,20 +84,20 @@ const Loader = ({ onComplete }) => {
     <div className="fixed inset-0 z-[9999] bg-[#0a0a0a]">
 
       {/* Background tagline */}
-      <p className="absolute inset-0 flex items-center justify-center text-white/20 text-xl tracking-widest uppercase pointer-events-none">
+      <p className="absolute inset-0 flex items-center justify-center text-white/20 text-base sm:text-lg lg:text-xl tracking-widest uppercase pointer-events-none px-4 text-center">
         Just do it.
       </p>
 
       {/* Main content group */}
       <div
         ref={groupRef}
-        className="absolute inset-0 flex flex-col items-center justify-center gap-6"
+        className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-6 px-4"
       >
         {/* Nike Logo */}
         <img
           ref={logoRef}
           src="/images/nike-logo.png"
-          className="w-50 mb-10 pl-10 invert"
+          className="w-32 pl-6 sm:w-40 sm:pl-8 lg:w-50 lg:pl-10 mb-6 sm:mb-8 lg:mb-10 invert"
           alt="Nike"
         />
 
@@ -105,7 +105,7 @@ const Loader = ({ onComplete }) => {
         {/* Progress bar — thin, minimal */}
         <div
           ref={barContainerRef}
-          className="w-48 h-[1px] bg-white/10 relative"
+          className="w-40 sm:w-44 lg:w-48 h-[1px] bg-white/10 relative"
         >
           <div
             ref={barFillRef}

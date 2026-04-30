@@ -15,8 +15,8 @@ const App = () => {
   return (
     <>
       {loading && <Loader onComplete={handleLoaderComplete} />}
-      <div className={`h-screen w-screen overflow-x-hidden relative ${!loading ? "opacity-100" : "opacity-0"}`}>
-        <div className="absolute top-0 left-0 right-0 px-10 py-5 z-50">
+      <div className={`min-h-screen w-screen overflow-x-hidden relative ${!loading ? "opacity-100" : "opacity-0"}`}>
+        <div className="absolute top-0 left-0 right-0 px-4 py-4 sm:px-6 sm:py-5 lg:px-10 z-50">
           <Navbar isLoaded={!loading} />
         </div>
         {/* Hero Section - Background */}
